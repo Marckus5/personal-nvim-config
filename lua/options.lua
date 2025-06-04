@@ -8,6 +8,7 @@ sources = {
             null_ls.builtins.diagnostics.mypy,   -- MyPy
   }
 })
+
 -- add yours here!
 
 local o = vim.o

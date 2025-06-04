@@ -8,6 +8,7 @@ return {
   -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
+    event = "BufReadPre",
     config = function()
       require "configs.lspconfig"
     end,
@@ -25,7 +26,8 @@ return {
     opts = {
       ensure_installed = {
   		  "vim", "lua", "vimdoc",
-        "html", "css", "python"
+        "html", "css", "python",
+        "c", "cpp",
   	  },
     },
   },
