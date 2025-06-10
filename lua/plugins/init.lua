@@ -41,6 +41,16 @@ return {
       -- Only one of these is needed.
       "nvim-telescope/telescope.nvim", -- optional
     },
-  }
+  },
+
+  {
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    lazy = false,
+    opts = {},
+  },
 
 }
