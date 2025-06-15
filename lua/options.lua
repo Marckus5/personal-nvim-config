@@ -2,8 +2,9 @@ require "nvchad.options"
 
 require('refactoring').setup()
 
--- add yours here!
+-- TODO: add yours here! 
 
+require("todo-comments")
 local o = vim.o
 o.cursorlineopt ='both' -- to enable cursorline!
 
