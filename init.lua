@@ -11,27 +11,44 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-local lazy_config = require "configs.lazy"
+-- For VS Code
+if vim.g.vscode then
+  print "VSCODE MODE"
 
--- load plugins
-require("lazy").setup({
-  {
-    "NvChad/NvChad",
-    lazy = false,
-    branch = "v2.5",
-    import = "nvchad.plugins",
-  },
+  require("vscode")
+  require("lazy").setup {
+    { import = "vsc.plugins" },
+  }
+  require "vsc.options"
 
-  { import = "plugins" },
-}, lazy_config)
+  vim.schedule(function()
+    require "vsc.mappings"
+  end)
 
--- load theme
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")
+-- for "Normal" Neovim
+else
+  local lazy_config = require "configs.lazy"
 
-require "options"
-require "autocmds"
+  -- load plugins
+  require("lazy").setup({
+    {
+      "NvChad/NvChad",
+      lazy = false,
+      branch = "v2.5",
+      import = "nvchad.plugins",
+    },
 
-vim.schedule(function()
-  require "mappings"
-end)
+    { import = "plugins" },
+  }, lazy_config)
+
+  -- load theme
+  dofile(vim.g.base46_cache .. "defaults")
+  dofile(vim.g.base46_cache .. "statusline")
+
+  require "options"
+  require "autocmds"
+
+  vim.schedule(function()
+    require "mappings"
+  end)
+end
