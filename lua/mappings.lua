@@ -12,5 +12,8 @@ map("n", "<Leader>gs", "<cmd> Neogit kind=floating <cr>", { desc = "Open git Sta
 map("n", "<Leader>gc", "<cmd> Neogit commit -a <cr>", { desc = "git Commit all modified"})
 
 -- move a line of code up or down
-map("n", "<A-j>", "<cmd>m +1 <cr>", { desc = "Move code down"})
-map("n", "<A-k>", "<cmd>m -2 <cr>", { desc = "Move code up"})
+map({"n", "v"}, "<A-j>", "<cmd>m +1 <cr>", { desc = "Move code down" })
+map({"n", "v"}, "<A-k>", "<cmd>m -2 <cr>", { desc = "Move code up" })
+
+-- Lua
+map("n", "<leader>mr", require("micropython_nvim").run)

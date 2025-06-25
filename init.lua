@@ -15,11 +15,14 @@ vim.opt.rtp:prepend(lazypath)
 if vim.g.vscode then
   print "VSCODE MODE"
 
-  require("vscode")
+  require "vscode"
   require("lazy").setup {
     { import = "vsc.plugins" },
   }
   require "vsc.options"
+
+  -- use system clipboard
+  vim.opt.clipboard = "unnamedplus"
 
   vim.schedule(function()
     require "vsc.mappings"

@@ -1,10 +1,11 @@
 local map = vim.keymap.set
 
+local vscode = require "vscode"
 -- /***********************/
 --    Mappings from NVChad
 -- /***********************/
--- dunno why these don't work
--- map("n", "<C-h>", "<C-w> h", { desc = "switch window left" })
+
+-- map("n", "<C-h>", vscode.action(), { desc = "switch window left" })
 -- map("n", "<C-l>", "<C-w> l", { desc = "switch window right" })
 -- map("n", "<C-j>", "<C-w> j", { desc = "switch window down" })
 -- map("n", "<C-k>", "<C-w> k", { desc = "switch window up" })
@@ -26,8 +27,16 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map({ "n", "v" }, "<C-s>", "<cmd> w <cr>")
 
 -- move a line of code up or down
-map("n", "<A-j>", "<cmd>m +1 <cr>", { desc = "Move code down" })
-map("n", "<A-k>", "<cmd>m -2 <cr>", { desc = "Move code up" })
+map({"n", "v"}, "<A-j>", "<cmd>lua require('vscode').action('editor.action.moveLinesDownAction')<CR>", { desc = "Move code down" })
+map({"n", "v"}, "<A-k>", "<cmd>lua require('vscode').action('editor.action.moveLinesUpAction')<CR>", { desc = "Move code up" })
 
 -- close tab
 -- map("n", "<leader>x", "<cmd>q <cr>", { desc = "Close Tab" })
+-- format
+
+map("n", "<tab>", "<cmd>lua require('vscode').action('workbench.action.nextEditorInGroup')<CR>")
+map("n", "<S-tab>", "<cmd>lua require('vscode').action('workbench.action.previousEditorInGroup')<CR>")
+-- general keymaps
+map({"n", "v"}, "<leader>h", "<cmd>lua require('vscode').action('workbench.action.terminal.toggleTerminal')<CR>")
+map({"n", "v"}, "<leader>fm", "<cmd>lua require('vscode').action('editor.action.formatDocument')<CR>")
+map({"n", "v"}, "<leader>x", "<cmd>lua require('vscode').action('workbench.action.closeActiveEditor')<CR>")
